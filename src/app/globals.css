@@ -1,0 +1,178 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  /* Default Cyberpunk Theme */
+  --background: #090c15;
+  --foreground: #f3f4f6;
+  --card: #111726;
+  --card-foreground: #f9fafb;
+  --primary: #00f0ff;
+  --primary-foreground: #090c15;
+  --secondary: #ff007f;
+  --secondary-foreground: #ffffff;
+  --accent: #7000ff;
+  --accent-foreground: #ffffff;
+  --muted: #1f293d;
+  --muted-foreground: #9ca3af;
+  --border: rgba(0, 240, 255, 0.2);
+  --radius: 12px;
+}
+
+[data-theme="library"] {
+  --background: #140d09;
+  --foreground: #fef3c7;
+  --card: #1f140e;
+  --card-foreground: #fffbeb;
+  --primary: #f59e0b;
+  --primary-foreground: #140d09;
+  --secondary: #d97706;
+  --secondary-foreground: #ffffff;
+  --accent: #b45309;
+  --accent-foreground: #ffffff;
+  --muted: #2e1d13;
+  --muted-foreground: #d97706;
+  --border: rgba(245, 158, 11, 0.25);
+}
+
+[data-theme="space"] {
+  --background: #060914;
+  --foreground: #e0e7ff;
+  --card: #0d1226;
+  --card-foreground: #eef2ff;
+  --primary: #8b5cf6;
+  --primary-foreground: #ffffff;
+  --secondary: #3b82f6;
+  --secondary-foreground: #ffffff;
+  --accent: #6366f1;
+  --accent-foreground: #ffffff;
+  --muted: #1e1b4b;
+  --muted-foreground: #a5b4fc;
+  --border: rgba(139, 92, 246, 0.25);
+}
+
+[data-theme="wizard"] {
+  --background: #0b0716;
+  --foreground: #f3e8ff;
+  --card: #160e29;
+  --card-foreground: #faf5ff;
+  --primary: #a855f7;
+  --primary-foreground: #ffffff;
+  --secondary: #10b981;
+  --secondary-foreground: #ffffff;
+  --accent: #c084fc;
+  --accent-foreground: #ffffff;
+  --muted: #2e1065;
+  --muted-foreground: #c084fc;
+  --border: rgba(168, 85, 247, 0.25);
+}
+
+[data-theme="hacker"] {
+  --background: #050c05;
+  --foreground: #dc2626;
+  --foreground: #4ade80;
+  --card: #0a1a0a;
+  --card-foreground: #86efac;
+  --primary: #22c55e;
+  --primary-foreground: #050c05;
+  --secondary: #10b981;
+  --secondary-foreground: #ffffff;
+  --accent: #15803d;
+  --accent-foreground: #ffffff;
+  --muted: #14532d;
+  --muted-foreground: #4ade80;
+  --border: rgba(34, 197, 94, 0.3);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Custom Glassmorphism Card */
+.glass-card {
+  background: rgba(17, 23, 38, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px -10px var(--primary);
+}
+
+/* Glowing Border Effect */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  border-radius: calc(var(--radius) + 1px);
+  z-index: -1;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.glow-border:hover::after {
+  opacity: 1;
+}
+
+/* XP Bar Fill Animation */
+@keyframes xpShine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.xp-bar-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.xp-bar-glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: xpShine 2.5s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
